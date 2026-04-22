@@ -44,7 +44,7 @@ final class AddNoteViewModel {
         defer { isLoading = false }
 
         do {
-            let snapshot = try await weatherService.fetchCurrentWeather(city: OpenWeatherConfig.defaultCity)
+            let snapshot = try await weatherService.fetchCurrentWeather(city: WeatherConfig.defaultCityName)
             let note = WeatherNote(
                 id: UUID(),
                 text: body,

@@ -30,24 +30,7 @@ struct NoteDetailView: View {
 
             Section(String(localized: "Weather")) {
                 HStack {
-                    if let url = note.weather.iconImageURL {
-                        AsyncImage(url: url) { phase in
-                            switch phase {
-                            case .empty:
-                                ProgressView()
-                            case .success(let image):
-                                image
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 72, height: 72)
-                            case .failure:
-                                Image(systemName: "cloud.fill")
-                                    .font(.system(size: 48))
-                            @unknown default:
-                                EmptyView()
-                            }
-                        }
-                    }
+                    WeatherIconView(weather: note.weather, size: 72)
                     VStack(alignment: .leading, spacing: 4) {
                         Text(String(format: "%.0f°", note.weather.temperatureCelsius))
                             .font(.title.weight(.semibold))
@@ -90,7 +73,8 @@ struct NoteDetailView: View {
                     iconId: "01n",
                     locationName: "Kyiv",
                     latitude: 50.45,
-                    longitude: 30.52
+                    longitude: 30.52,
+                    iconSystemName: nil
                 )
             )
         )

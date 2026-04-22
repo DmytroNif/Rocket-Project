@@ -29,30 +29,7 @@ struct NoteRowView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
 
             VStack(alignment: .trailing, spacing: 2) {
-                if let url = note.weather.iconImageURL {
-                    AsyncImage(url: url) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                                .frame(width: 40, height: 40)
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 40, height: 40)
-                        case .failure:
-                            Image(systemName: "cloud.sun.fill")
-                                .font(.title2)
-                                .foregroundStyle(.secondary)
-                        @unknown default:
-                            EmptyView()
-                        }
-                    }
-                } else {
-                    Image(systemName: "cloud.fill")
-                        .font(.title2)
-                        .foregroundStyle(.secondary)
-                }
+                WeatherIconView(weather: note.weather, size: 40)
                 Text(String(format: "%.0f°", note.weather.temperatureCelsius))
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.primary)
@@ -71,12 +48,13 @@ struct NoteRowView: View {
                 createdAt: .now,
                 weather: WeatherSnapshot(
                     temperatureCelsius: 18,
-                    conditionDescription: "легка хмарність",
-                    conditionMain: "Clouds",
+                    conditionDescription: "Partly cloudy",
+                    conditionMain: "Partly cloudy",
                     iconId: "02d",
                     locationName: "Kyiv",
                     latitude: 50.45,
-                    longitude: 30.52
+                    longitude: 30.52,
+                    iconSystemName: nil
                 )
             )
         )
