@@ -42,4 +42,11 @@ final class NoteStorageService {
             throw NoteStorageError.encodingFailed
         }
     }
+
+    /// Appends a note, preserving existing entries.
+    func addNote(_ note: WeatherNote) throws {
+        var all = loadNotes()
+        all.append(note)
+        try saveNotes(all)
+    }
 }

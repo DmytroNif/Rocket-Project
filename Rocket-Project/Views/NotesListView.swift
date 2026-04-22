@@ -7,6 +7,7 @@ import SwiftUI
 
 struct NotesListView: View {
     @State private var viewModel = NotesListViewModel()
+    @State private var isPresentingAdd = false
 
     var body: some View {
         NavigationStack {
@@ -31,6 +32,21 @@ struct NotesListView: View {
             .navigationTitle("WeatherNotes")
             .navigationDestination(for: WeatherNote.self) { note in
                 NoteDetailView(note: note)
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button {
+                        isPresentingAdd = true
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                    }
+                    .accessibilityLabel(String(localized: "Add note"))
+                }
+            }
+            .sheet(isPresented: $isPresentingAdd) {
+                AddNoteView {
+                    viewModel.load()
+                }
             }
             .onAppear { viewModel.load() }
             .alert(
