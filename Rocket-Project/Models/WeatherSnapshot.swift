@@ -6,7 +6,7 @@
 import Foundation
 
 /// Current weather for a point in time, suitable for display and local persistence.
-struct WeatherSnapshot: Codable, Equatable, Sendable {
+struct WeatherSnapshot: Codable, Equatable, Hashable, Sendable {
     var temperatureCelsius: Double
     var conditionDescription: String
     var conditionMain: String
