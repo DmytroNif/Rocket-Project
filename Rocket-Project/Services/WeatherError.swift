@@ -6,18 +6,16 @@
 import Foundation
 
 enum WeatherError: LocalizedError, Equatable, Sendable {
-    case missingAPIKey
     case invalidRequest
     case noData
     case httpStatus(code: Int)
     case networkUnavailable
     case decodingFailed
     case noWeatherPayload
+    case locationNotFound
 
     var errorDescription: String? {
         switch self {
-        case .missingAPIKey:
-            return "Add your OpenWeather API key in OpenWeatherConfig or set OPENWEATHER_API_KEY in the run scheme."
         case .invalidRequest:
             return "Could not build the weather request."
         case .noData:
@@ -30,6 +28,8 @@ enum WeatherError: LocalizedError, Equatable, Sendable {
             return "Could not read the weather response."
         case .noWeatherPayload:
             return "The response did not include weather details."
+        case .locationNotFound:
+            return "No place matched that name. Try another spelling or a larger city."
         }
     }
 }

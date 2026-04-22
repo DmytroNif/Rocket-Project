@@ -11,7 +11,7 @@ import SwiftUI
 struct Rocket_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NotesListView()
         }
     }
 }
