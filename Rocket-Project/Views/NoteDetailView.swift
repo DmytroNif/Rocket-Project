@@ -54,7 +54,7 @@ struct NoteDetailView: View {
                 }
             }
         }
-        .navigationTitle(String(localized: "Note"))
+        .navigationTitle(Text(note.text))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

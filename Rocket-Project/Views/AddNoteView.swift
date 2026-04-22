@@ -38,6 +38,7 @@ struct AddNoteView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     if viewModel.isLoading {
                         ProgressView()
+                            .accessibilityLabel(String(localized: "Loading weather…"))
                     } else {
                         Button(String(localized: "Save")) {
                             Task {

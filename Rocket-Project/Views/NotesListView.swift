@@ -29,7 +29,7 @@ struct NotesListView: View {
                     }
                 }
             }
-            .navigationTitle("WeatherNotes")
+            .navigationTitle(String(localized: "WeatherNotes"))
             .navigationDestination(for: WeatherNote.self) { note in
                 NoteDetailView(note: note)
             }
@@ -38,9 +38,10 @@ struct NotesListView: View {
                     Button {
                         isPresentingAdd = true
                     } label: {
-                        Image(systemName: "square.and.pencil")
+                        Image(systemName: "plus.circle.fill")
                     }
                     .accessibilityLabel(String(localized: "Add note"))
+                    .accessibilityHint(String(localized: "Creates a new note and fetches the current weather."))
                 }
             }
             .sheet(isPresented: $isPresentingAdd) {
